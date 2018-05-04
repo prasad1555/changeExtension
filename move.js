@@ -1,14 +1,17 @@
 var fs = require('fs');
 
-
+// the Old file Path - all pgp files put in seperate folder.
 var list = walkSync(__dirname+"/test/old/", []);
 console.log(list);
 
 for(var i = 0; i < list.length; i++){
-
+    if(list[i].indexOf('gpg') > -1){
     move(__dirname+"/test/old/"+ list[i], __dirname+"/test/new/"+ (list[i]).replace(".gpg", ".pgp"), function(val){
         console.log("file name changed Successfully...");
     })
+    }else{
+        console.log('No files found..');   
+    }
 };
 
 
